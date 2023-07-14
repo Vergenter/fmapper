@@ -1,0 +1,1 @@
+```g++ -std=c++20 -march=native -Ofast -g main.cpp -o main```
