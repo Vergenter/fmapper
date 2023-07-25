@@ -1,4 +1,4 @@
-
+enable_testing()
 
 # Add GoogleTest
 include(FetchContent)
@@ -9,9 +9,10 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 
 # Enable testing
-enable_testing()
+
 # Test executable
 add_executable(add_test add_test.cpp)
+
 
 # Link libraries
 target_link_libraries(add_test 
@@ -21,6 +22,20 @@ target_link_libraries(add_test
 target_include_directories(add_test PRIVATE 
   ${CMAKE_SOURCE_DIR}/include
 )
+
+
+add_executable(expressions_test expressions_test.cpp)
+
+target_link_libraries(expressions_test 
+  GTest::gtest_main
+  operations
+  expressions
+)
+
+target_include_directories(expressions_test PRIVATE
+  ${CMAKE_SOURCE_DIR}/include
+)
 # Discover tests  
 include(GoogleTest)
 gtest_discover_tests(add_test)
+gtest_discover_tests(expressions_test)
